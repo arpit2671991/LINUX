@@ -1,0 +1,5 @@
+// Add new group
+
+groupadd <group_name>
+
+//files to check related to group and password as well as users

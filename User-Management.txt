@@ -1,0 +1,28 @@
+//CREATE USERS
+useradd <user_name>
+
+//CREATE USERS WITH DIFFERENT PARAMS
+useradd -g <group_name> -s /bin/bash -c "description" -m -d /home/<dirname> <user_name>
+
+//DELETE USERS
+userdel <user_name>
+
+userdel -r <username> (it will delete the user with home direcotry too)
+
+userdel -f <username> (force delete even if the user is logged in)
+
+//MODIFY USER
+usermod -G <group_name> <user_name> (it will add user into new group. but default group will remain same)
+
+usermod -g <group_name> <user_name> (it will change the default group)
+
+// other usermod options
+-m -d /home/new_folder (to move the content of the home folder to this new_folder)
+
+-p (we can user the passwd command also)
+
+-s shell type
+
+-L -U (Lock/Unlock the user)
+
+// Check 
