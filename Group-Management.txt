@@ -3,3 +3,9 @@
 groupadd <group_name>
 
 //files to check related to group and password as well as users
+
+cat /etc/group (how many users are added in group)
+
+userid, groupid, homedir and shell type, description about user
+
+cat /etc/shadow (userpassword details)

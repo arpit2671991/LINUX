@@ -25,4 +25,6 @@ usermod -g <group_name> <user_name> (it will change the default group)
 
 -L -U (Lock/Unlock the user)
 
-// Check 
+// Check user details
+
+id <username>
