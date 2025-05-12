@@ -1,0 +1,38 @@
+// What is firewall in linux
+// firewalld service in linux
+// Enabel/Disable firewall
+// How to see existing firewall rules
+// Adding and deleting /listing  the firewall rules
+
+    rpm -qa | grep firewall - (check the firewall service)
+    // if firewall service is not install
+        yum install firewalld (install firewall service)
+
+    // stop/start firewall service
+        systemctl start/enable firewalld
+        systemctl stop/disable firewalld
+    
+    // check the status/restart the firewall service
+        systemctl status firewalld
+        systemctl restart firewalld
+    
+    // check the rules in firewall
+        firewall-cmd --list-all
+
+    // check the all available services in firewall
+        firewall-cmd --get-services
+
+    // to reload the firewall config
+        firewall-cmd --reload
+    
+    // get the firewall zones details
+        firewall-cmd --get-zones
+
+    // get the active zones list
+        firewall-cmd --get-active-zones
+
+    // get the specific rule for specific zone
+       firewall-cmd --zone=public --list-all
+// Adding and removing ports
+// Block incoming/outgoing traffic
+// Block ICMP
