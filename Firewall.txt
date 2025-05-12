@@ -33,6 +33,17 @@
 
     // get the specific rule for specific zone
        firewall-cmd --zone=public --list-all
+
+    // add or remove a service
+        firewall-cmd --add-service=<service-name>
+        firewall-cmd --remove-service=<service-name>
+        // add firewall service permanent
+        firewall-cmd --add-service=<service-name> --permanent
+        firewall-cmd --remove-service=<service-name> --permanent
+        systemctl restart firewall.service
+        firewall-cmd --reload
+
+
 // Adding and removing ports
 // Block incoming/outgoing traffic
 // Block ICMP
