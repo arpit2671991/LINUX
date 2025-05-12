@@ -1,0 +1,7 @@
+// Topics
+// How to switch user
+// How to exit from current user
+// What is use of sudo
+// How to provide sudo access to user
+// What is visudo (visudo - file is to edit with users to allow specific commands with sudo privillage )
+// Working with sudoers file - (/etc/sudoers file to edit and give users to give privillage access)
