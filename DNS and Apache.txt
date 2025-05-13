@@ -1,0 +1,19 @@
+// DNS & APACHE SERVER SETUP //
+
+APACHE SERVER SETUP
+
+// packages need to install
+    yum install httpd
+
+// Start/Stop/Enable Service
+    systemctl start/stop/enable/status httpd
+
+// Enable the service is firewall
+    firewall-cmd --add-service=http --permanent
+    firewall-cmd --reload
+
+// Config files
+    /var/html/index.html
+    /etc/httpd/conf/httpd.conf
+    
+
