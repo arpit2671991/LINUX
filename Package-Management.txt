@@ -1,0 +1,75 @@
+// key summary of topics
+// What is package management
+// Package management tools
+        yum
+        dnf
+        rpm
+        apt
+//  Difference between upgrade or update
+//  Rollback the patches or update 
+
+    //installing
+    //deleting
+    //upgrading
+    //view packages info
+    //packages config
+
+// Manage software using YUM/DNF and RPM for your Red Hat based linux servers like CentOS.
+// While APT for Debian based like Ubuntu, Kali linux etc
+
+// YUM (YELLOW-DOG UPDATER MODIFIED) is the primary package management tool for redhat
+// YUM performs dependency resolution when installing, updating, and removing software packages
+// YUM can manage the packages from installed repos in the system or from .rpm packages
+
+// how to install and remove the packages
+    yum install nginx -y
+    yum remove ngnix
+
+// how to update or upgrade the packages
+    yum update package
+    yum upgrade package
+
+// you can see all the option using 
+    yum -option
+
+//to check the available updates for packages
+    yum check-update
+
+// to see the yum related activity history
+    yum history
+
+// to undo or redo packages
+    yum history undo/redo <id>
+
+//     RPM                  
+using RPM you can install, uninstall and query individual software packages
+it cannot manage the dependency resolution like YUM
+RPM maintains a database of installed packages, which enables the powerful and fast quries
+
+// install, remove, and upgrade .rpm packages using RPM
+    rpm -i package-name
+    rpm -U package-name
+    rpm -ivh package-name
+    rpm -evh package-name
+
+// query all the installed packages
+    rpm -qa
+
+// more info about the package
+    rpm -qi <package-name>
+
+// info about config files for package
+    rpm -qc <package-name>
+
+//    DNF (DANDIFIED YUM)    //
+
+    dnf list vailable
+    dnf list installed
+
+    dnf update/upgrade
+    dnf install package.name
+    dnf remove package.name
+
+    dnf info package.name
+    dnf search package.name
+

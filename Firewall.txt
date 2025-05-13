@@ -42,8 +42,16 @@
         firewall-cmd --remove-service=<service-name> --permanent
         systemctl restart firewall.service
         firewall-cmd --reload
+    
+    // add or remove port in firewall
+        firewall-cmd --add-port=20201/tcp
+        firewall-cmd --remove-port=20201/tcp
 
+// Block incoming traffic
+    firewall-cmd --add-rich-rule="true family="ipv4" source address="192.168.0.0" reject"
 
-// Adding and removing ports
 // Block incoming/outgoing traffic
+    firewall-cmd --direct --add-rule ipv4 filter OUTPUT 0 -d <IP> -j DROP
+
 // Block ICMP
+    firewall-cmd --add-icmp-block-inversion
