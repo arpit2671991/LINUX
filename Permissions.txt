@@ -1,0 +1,12 @@
+umask
+
+//to assign/remove permissions
+umask u+<permissions>,g+<permissions>,o+<permissions>
+
+umask u-<permissions>,g-<permissions>,o-<permissions>
+
+// to change the default permissions globally
+
+edit the .bashrc file
+umask
+
