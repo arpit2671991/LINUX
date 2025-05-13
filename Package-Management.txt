@@ -73,3 +73,12 @@ RPM maintains a database of installed packages, which enables the powerful and f
     dnf info package.name
     dnf search package.name
 
+// For Ubuntu (APT)
+
+    apt install package_name
+    apt remove package_name
+
+    apt autoremove package_name(for removing dependency)
+
+    apt update
+    apt-cache search apache
