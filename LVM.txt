@@ -1,0 +1,82 @@
+// TOPICS //
+    What is LVM and its example
+    {
+        Physical Volume [DISK1] ===> Volume Group ===> Logical Volume ===> [Mountin point 1]
+                                                              ===> [Mounting point 2]
+                                                              ===> [Mounting point 3] 
+
+
+        Physical Volume [DISK1, DISK2, DISK3] ===> Volume Group ===> Logical Volume ====> [Mounting1]
+                                                                            ====> [Mounting2]
+                                                                            ====> [Mounting3]
+    }
+
+    Advantages of LVM
+    [incase disk running out of space, you can add new harddisk without breaking partitions of your system]
+    
+    Possibilities of LVM
+    [   new space can be created for your new application 
+        incase low disk space, you can increase the disk space
+        incase of extra space allocated, you can decrease the disk space and another volume group
+    ]
+    Real-Time LVM example
+    Considering deploying two new apps on the server so 
+    your task is to create seprate partitions and disk space for the app1 and app2
+
+    Adding new space/disk using LVM
+    // Following steps needed
+        1. install new hard disk
+        2. make a partition
+        3. designate physical volume (pv)
+        4. manage volume group (vg)
+        5. manage logical volume (lv)
+        6. apply file system
+        7. set mount point
+    
+    // create partition
+        1. type fdisk
+        2. n (for create new partition)
+        3. p (for primary partition)
+        4. enter
+        5. enter
+        6. t (we need to change the type of newly created partition)
+        7. 1 (which number of partition created )
+        8. 8e (type the code to change Linux to Linux LVM)
+        9. lsblk (confirm the LVM partition 8e)
+        10. wq (write the changes)
+
+    // designate physical volume (pv)
+        1. pvcreate /dev/sdc1
+        2. pvdiskplay
+
+    // manage volume group (vg)
+        1. vgcreate <volume_name> /dev/sdc1 
+        2. vgdisplay
+    
+    // manage logical volume (lv)
+        1. lvcreate -L size(1G or 1T) -n lvname vgname
+        2. lvdisplay /dev/vgapps/<lvname>
+
+    // apply file system
+        1. mkfs.ext4 /dev/vgapps/lv-app1
+
+    // set mount point
+        mkdir /app1
+        mount /dev/vgapps/lv-app1 /app1
+        df -hT
+        cat /etc/mtab (copy the temp mount point)
+        vi /etc/ftab  (paste here)
+        wq
+        mount -av
+
+    Extending the space using LVM
+
+        vgextend vgapps /dev/sdc2
+        lvextend -L+1G /dev/vgapps/app1-lv
+        resize2fs /dev/vgapps/app1-lv 3T
+
+        for xfs
+        xfs_growfs /dev/vgapps/app1-lv
+
+
+

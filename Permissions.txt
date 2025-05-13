@@ -9,4 +9,5 @@ umask u-<permissions>,g-<permissions>,o-<permissions>
 
 edit the .bashrc file
 umask
-
+// reload file
+source .bashrc
