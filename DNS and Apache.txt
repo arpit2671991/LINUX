@@ -13,7 +13,37 @@ APACHE SERVER SETUP
     firewall-cmd --reload
 
 // Config files
-    /var/html/index.html
+    /var/www/html/index.html
     /etc/httpd/conf/httpd.conf
     
 
+// DNS SETUP //
+Installation steps for CentOS or REDHAT
+package we need to install for DNS is BIND (Berkeley Internet Name Domain)
+
+    yum install bind bind-utils
+
+    // Start/Stop/Enable Service
+    systemctl start/stop/enable/status named
+
+    // Enable the service is firewall
+    firewall-cmd --add-service=dns --permanent
+    firewall-cmd --reload
+
+    // DNS Config files
+    /etc/named.config
+
+    // Directory where all zones files are present where defined the records
+    /var/named
+
+    //after named.conf file edit 
+    named-checkconf - (to check any error)
+
+    //create forward zone file in /var/named/
+    // edit the file (forwardzone.example.com)
+    // check named-checkzone forwardzone.example.com
+    // Restart the named service
+    // Verify the DNS server using nslookup www.google.com
+
+    //edit the file under
+    vi /etc/resolv.conf
