@@ -1,0 +1,49 @@
+// TOPICS //
+What is SAMBA
+Samba server side setup and configuration
+Accessing shared dir from windows
+Client side samba setup and accessing shared dir
+Securing the samba server side
+
+Samba is a linux utility or tool to share Linux files and Print services to other OS
+Using Server Message Block (SMB) and 
+Common Internet File System (CIFS) protocols.
+
+// Install Samba package
+yum install samba samba-cilent samba-common samba-client -y
+
+// Enable samba through firewall
+firewall-cmd --add-services=samba --permanent 
+firewall-cmd --reload
+
+
+
+// Create directory for samba and give all permission
+mkdir -p /samba/apps
+
+// Change SELinux security context for samba shared directory incase SELinux is enabled
+chcon -t samba_share_t /samba/apps
+
+// Modify /etc/samba/smb.conf
+[global]
+workgroup = SAMBA
+netbios name = centos
+security = user
+map to guest = bad user
+dns proxy = no 
+#host allow = 192.168.0.0/24
+
+[Apps]
+path = /samba/apps
+browsable = yes
+writable = yes
+guest ok = yes
+guest only = yes
+read only = no
+
+// Verify settings
+testparam
+
+// services
+systemctl enable smb nmb
+systemctl start smb nmb
