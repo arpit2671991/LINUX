@@ -20,6 +20,8 @@ firewall-cmd --reload
 
 // Create directory for samba and give all permission
 mkdir -p /samba/apps
+chmod a+rwx samba/
+chmod a+rwx samba/apps
 
 // Change SELinux security context for samba shared directory incase SELinux is enabled
 chcon -t samba_share_t /samba/apps
@@ -47,3 +49,43 @@ testparam
 // services
 systemctl enable smb nmb
 systemctl start smb nmb
+
+
+// Client Side SAMBA configuration //
+ yum install cifs-utils samba-client
+
+ // create a mount point
+ mkdir /mnt/samba/apps
+
+ //mount the samba dir
+ mount -t cifs //<serv ip>/Apps /mnt/samba/apps
+
+ // Secure SAMBA Server //
+ groupadd smbgroup
+
+ useradd -M -d /samba_secure -s /usr/sbin/nologin -G smbgroup testuser
+
+ mkdir /samba_secure
+
+ chown testuser:smbgroup /samba_secure
+
+ chmod 2770 /samba_secure
+
+ chcon -t samba_share_t /samba_secure
+
+ smbpasswd -a testuser
+ smbpasswd -e testuser
+
+
+// Add the follwing lines in /etc/smb.conf 
+
+[Secure]
+path = /samba_secure
+valid users = @smbgroup
+guest ok = no
+writable = yes
+browsable = yes
+
+// Restart the services
+systemctl restart smb
+systemctl restart nmb
