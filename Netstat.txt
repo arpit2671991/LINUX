@@ -1,0 +1,29 @@
+// NETSTAT //
+ netstat is a command line network utility that displays:
+ network connections for TCP and UDP
+ routing tables
+ a number of network interface
+ network protocols statistics
+
+ case 1
+ To identify no. of connection on a given port or ip
+
+ netstat -putan | grep :<PORT/IP>
+
+ netstat commands
+(t-tcp, u-udp, n-numerical addr, l-listning port, p-PID)
+
+to see all socket
+netstat -a
+
+to list all TCP ports 
+netstat -at 
+
+to list all TCP v6 ports 
+netstat -6at
+
+to list all UDP ports
+netstat -au
+
+to list all listing ports
+netstat -l
